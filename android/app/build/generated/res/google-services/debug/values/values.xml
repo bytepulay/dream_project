@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1079842271790-u3hsl9021fujbi99nhjd3j004sgoi1lj.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1079842271790</string>
+    <string name="google_api_key" translatable="false">AIzaSyBt8FFfSqFh3-C2f25um5gr17K4-3Hoc48</string>
+    <string name="google_app_id" translatable="false">1:1079842271790:android:7c5ab4e895ba0fa8c265bf</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBt8FFfSqFh3-C2f25um5gr17K4-3Hoc48</string>
+    <string name="google_storage_bucket" translatable="false">anime-quiz-pro-111cd.appspot.com</string>
+    <string name="project_id" translatable="false">anime-quiz-pro-111cd</string>
+</resources>

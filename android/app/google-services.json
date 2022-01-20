@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1079842271790",
+    "project_id": "anime-quiz-pro-111cd",
+    "storage_bucket": "anime-quiz-pro-111cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079842271790:android:7c5ab4e895ba0fa8c265bf",
+        "android_client_info": {
+          "package_name": "com.nlt.annime_pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079842271790-ae0u87e0ch5bmeu35dkn09qhk2931gfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nlt.annime_pro",
+            "certificate_hash": "2b02d509d6d40d6e8e0eb0a6bb300d94a0fda19a"
+          }
+        },
+        {
+          "client_id": "1079842271790-u3hsl9021fujbi99nhjd3j004sgoi1lj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt8FFfSqFh3-C2f25um5gr17K4-3Hoc48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079842271790-u3hsl9021fujbi99nhjd3j004sgoi1lj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
