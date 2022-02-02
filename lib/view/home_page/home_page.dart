@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:annime_pro/helper/anime_color.dart';
 import 'package:annime_pro/services/admob_service.dart';

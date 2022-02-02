@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:annime_pro/helper/anime_color.dart';
 import 'package:annime_pro/view/guess_the_song/questions_data.dart';
 import 'package:audioplayer/audioplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 class QuizSongPage extends StatefulWidget {
   @override
@@ -13,20 +15,39 @@ class QuizSongPage extends StatefulWidget {
 class _QuizSongPageState extends State<QuizSongPage> {
 
 
-  int start = 5;
+  int start = 15;
   bool wait = false;
 
   AudioPlayer audioPlayer = new AudioPlayer();
+  // AudioPlayer audioPlayer1 = new AudioPlayer();
   Duration duration = new Duration();
   Duration position = new Duration();
   bool playing=false;
+  // final assetsAudioPlayer = AssetsAudioPlayer();
 
-  getAudio(String songUrl) async{
+  getAudio(String songUrl) async {
 
-    var url = songUrl;
-    var res = await audioPlayer.play(url,isLocal: true);
+    // var url = songUrl;
+    var res = await audioPlayer.play(songUrl);
+
+    // if(int.parse(res)==1){
+    //
+    // }
 
 
+
+    if(start==0){
+       audioPlayer.stop();
+      // playWarningSong();
+    }
+
+
+
+  }
+
+  playWarningSong(){
+    AudioPlayer audioPlayer1 = new AudioPlayer();
+    audioPlayer1.play("https://firebasestorage.googleapis.com/v0/b/quiz-e4c89.appspot.com/o/mixkit-security-facility-breach-alarm-994.wav?alt=media&token=48adcb51-0690-43c2-9eec-33943cb46620",isLocal: true);
   }
   int question_pos = 0;
   int score = 0;
@@ -37,13 +58,14 @@ class _QuizSongPageState extends State<QuizSongPage> {
 
 
   void startTimer() {
-    const onsec = Duration(seconds: 1);
+    const onsec = Duration(seconds: 2);
     Timer _timer = Timer.periodic(onsec, (timer) {
       if (start == 0) {
-        setState(() {
-          timer.cancel();
-          wait = true;
-        });
+        timer.cancel();
+        // setState(() {
+        //   timer.cancel();
+        //    wait = true;
+        // });
       } else {
         setState(() {
           start--;
@@ -54,13 +76,24 @@ class _QuizSongPageState extends State<QuizSongPage> {
     });
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    start=0;
+    super.dispose();
+  }
+
   var haveBeenAnswerIndex=0;
   @override
   void initState() {
     // TODO: implement initState
     // getAudio(questions[question_pos].songUrl.toString());
     _controller = PageController(initialPage: 0);
-    startTimer();
+
+      startTimer();
+
+
+    // startTimer();
     super.initState();
   }
   @override
@@ -147,7 +180,7 @@ class _QuizSongPageState extends State<QuizSongPage> {
                           backgroundColor: AnimeColor.whiteColor,
                           progressColor: AnimeColor.yellowColor,
                           currentValue: start,
-                          maxValue: 5,
+                          maxValue: 15,
                           //displayText: '%',
                         ),
                       ),
@@ -160,7 +193,9 @@ class _QuizSongPageState extends State<QuizSongPage> {
                             Icon(Icons.alarm,color: AnimeColor.whiteColor,),
                             Container(
                               margin: EdgeInsets.only(top: 4,right: 8),
-                              child: Text("0"+ start.toString() +" s",style: TextStyle(
+                              child: start<=9?Text("0"+ start.toString() +" s",style: TextStyle(
+                                  color: AnimeColor.whiteColor
+                              ),):Text(start.toString() +" s",style: TextStyle(
                                   color: AnimeColor.whiteColor
                               ),),
                             )
@@ -269,8 +304,8 @@ class _QuizSongPageState extends State<QuizSongPage> {
                               ),
                               fillColor: btnPressed
                                   ? questions[index].answers!.values.toList()[i]
-                                  ? Colors.green
-                                  : Colors.red
+                                  ? AnimeColor.primaryColor
+                                  : Colors.white
                                   : AnimeColor.whiteColor,
                               onPressed: !answered
                                   ? () {
@@ -301,6 +336,7 @@ class _QuizSongPageState extends State<QuizSongPage> {
                         ),
                         RawMaterialButton(
                           onPressed: () {
+                            print("click");
                             if (_controller!.page?.toInt() == questions.length - 1) {
                               // Navigator.push(
                               //     context,
@@ -314,7 +350,9 @@ class _QuizSongPageState extends State<QuizSongPage> {
                               setState(() {
                                 btnPressed = false;
                                  audioPlayer.stop();
-                                // getAudio(questions[question_pos+1].songUrl.toString());
+                                 start=15;
+                                startTimer();
+                                 getAudio(questions[question_pos+1].songUrl.toString());
                                 // print("Url is $question_pos");
                                 // print(questions[question_pos+1].songUrl.toString());
                               });
