@@ -2,18 +2,63 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:annime_pro/helper/anime_color.dart';
-import 'package:annime_pro/view/guess_the_song/questions_data.dart';
+import 'package:annime_pro/models/question_song.dart';
 import 'package:audioplayer/audioplayer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 class QuizSongPage extends StatefulWidget {
+  String type;
+  QuizSongPage(this.type);
   @override
   _QuizSongPageState createState() => _QuizSongPageState();
 }
 
 class _QuizSongPageState extends State<QuizSongPage> {
 
+  List<QuestionModel> questions = [
+    QuestionModel(
+        "How Many Whiskers does the average cat have on each side of its face ?",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        {
+          "1": false,
+          "3": false,
+          "12": true,
+          "5,007": false,
+        },
+        50
+    ),
+    QuestionModel("When does a cat purr ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",{
+      "When it cares for its kittens": false,
+      "When it needs confort": false,
+      "When it feels content": false,
+      "All of the above": true,
+    },
+        50
+    ),
+    QuestionModel("What is the averge nulber of kittens in a litter ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",{
+      "1 to 2": false,
+      "3 to 5": true,
+      "8 to 10": false,
+      "12 to 14": false,
+    },
+        50
+    ),
+    QuestionModel("How many moons does Mars have ?", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", {
+      "1": false,
+      "2": false,
+      "4": true,
+      "8": false,
+    },
+        50
+    ),
+    QuestionModel("What is Mars's nickname ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",{
+      "The red planet": true,
+      "The dusty planet": false,
+      "The hot planet": false,
+      "The smelly planet": false,
+    },50),
+
+  ];
 
   int start = 15;
   bool wait = false;
@@ -27,14 +72,10 @@ class _QuizSongPageState extends State<QuizSongPage> {
 
   getAudio(String songUrl) async {
 
-    // var url = songUrl;
     var res = await audioPlayer.play(songUrl);
-
     // if(int.parse(res)==1){
     //
     // }
-
-
 
     if(start==0){
        audioPlayer.stop();
@@ -58,7 +99,7 @@ class _QuizSongPageState extends State<QuizSongPage> {
 
 
   void startTimer() {
-    const onsec = Duration(seconds: 2);
+    const onsec = Duration(seconds: 1);
     Timer _timer = Timer.periodic(onsec, (timer) {
       if (start == 0) {
         timer.cancel();
@@ -88,6 +129,7 @@ class _QuizSongPageState extends State<QuizSongPage> {
   void initState() {
     // TODO: implement initState
     // getAudio(questions[question_pos].songUrl.toString());
+    print("Song type is"+widget.type);
     _controller = PageController(initialPage: 0);
 
       startTimer();
@@ -309,6 +351,9 @@ class _QuizSongPageState extends State<QuizSongPage> {
                                   : AnimeColor.whiteColor,
                               onPressed: !answered
                                   ? () {
+                                print("selected index is"+i.toString());
+                                print("selected index is"+questions[index].answers!.values.toList()[i].toString());
+
                                 if (questions[index]
                                     .answers!
                                     .values
@@ -324,11 +369,25 @@ class _QuizSongPageState extends State<QuizSongPage> {
                                 });
                               }
                                   : null,
-                              child: Text(questions[index].answers!.keys.toList()[i],
-                                  style: TextStyle(
-                                    color: AnimeColor.primaryColor,
-                                    fontSize: 18.0,
-                                  )),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    child: Text(questions[index].answers!.keys.toList()[i],
+                                        style: TextStyle(
+                                          color: AnimeColor.primaryColor,
+                                          fontSize: 18.0,
+                                        )),
+                                    margin: EdgeInsets.only(left:40),
+                                  ),
+
+                                  Container(
+                                      child: Image.asset("images/correct_image.png",width: 20,height: 20,),
+                                     margin: EdgeInsets.only(right: 12),)
+                                      // :Image.asset("images/wrong_image.png",width: 20,height: 20,)
+
+                                ],
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              )
                             ),
                           ),
                         SizedBox(

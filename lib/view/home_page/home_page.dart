@@ -5,6 +5,7 @@ import 'package:annime_pro/services/admob_service.dart';
 import 'package:annime_pro/view/Quiz_battle_multi_player_page/quiz_battle_multi_player_page.dart';
 import 'package:annime_pro/view/general_quiz_page/general_quiz_page.dart';
 import 'package:annime_pro/view/general_quiz_page/test_quiz.dart';
+import 'package:annime_pro/view/guess_the_song/guess_the_song_category_page.dart';
 import 'package:annime_pro/view/guess_the_song/quiz_song_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
@@ -381,8 +382,6 @@ class _HomePageState extends State<HomePage> {
 
 
 
-
-
               Container(
                 margin: EdgeInsets.only(left: 12),
                 child: Row(
@@ -406,7 +405,9 @@ class _HomePageState extends State<HomePage> {
               TouchRippleEffect(
                 rippleColor: AnimeColor.pinkColor,
                 onTap: (){
-                  Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(milliseconds: 500),child: QuizSongPage()));
+                  // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(milliseconds: 500),child: GridViewWidget()));
+                   Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(milliseconds: 500),child: GuessTheSongCategoryPage()));
+                  // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(milliseconds: 500),child: QuizSongPage()));
                 },
                 child: Container(
                   height: 140,

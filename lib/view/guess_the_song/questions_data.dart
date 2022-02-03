@@ -11,31 +11,38 @@ List<QuestionModel> questions = [
       "12": true,
       "5,007": false,
     },
+    50
   ),
   QuestionModel("When does a cat purr ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",{
     "When it cares for its kittens": false,
     "When it needs confort": false,
     "When it feels content": false,
     "All of the above": true,
-  }),
+  },
+  50
+  ),
   QuestionModel("What is the averge nulber of kittens in a litter ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",{
     "1 to 2": false,
     "3 to 5": true,
     "8 to 10": false,
     "12 to 14": false,
-  }),
+  },
+      50
+  ),
   QuestionModel("How many moons does Mars have ?", "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", {
     "1": false,
     "2": false,
     "4": true,
     "8": false,
-  }),
+  },
+    50
+  ),
   QuestionModel("What is Mars's nickname ?",  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",{
     "The red planet": true,
     "The dusty planet": false,
     "The hot planet": false,
     "The smelly planet": false,
-  }),
+  },50),
   // QuestionModel("About How long would it take to travel to Mars ?",  "https://media.thitsarparamisociety.com/mp3/Sar%20Lon%20Sayardaw/001.mp3",{
   //   "Three days": false,
   //   "A month": false,
